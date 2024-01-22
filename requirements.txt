@@ -1,0 +1,5 @@
+pytorch = 1.7.0
+tqdm = 4.64.1s
+torchvision = 0.15.2
+cuda91
+tensorboard_logger = 0.1.0
