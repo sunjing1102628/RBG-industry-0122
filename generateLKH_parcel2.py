@@ -142,5 +142,5 @@ with open('test_instances/Industry_data_test/parcelnonull.txt', 'r') as txtfile:
     for row in reader:
         data.append(row)
 
-generate_industry_services_data('test_instances/Industry_data_test/parcelv2a.txt')
+generate_industry_services_data('test_instances/Industry_data_test/parcelv2.txt')
 
