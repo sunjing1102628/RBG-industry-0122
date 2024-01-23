@@ -55,7 +55,8 @@ def generate_industry_services_data(file_directory):
     # lines = lines[1:3301]
     # Select 3500 lines randomly if the file has enough lines, otherwise select all available lines
     random.seed(42)
-    num_lines_to_select = 3500
+    #num_lines_to_select = 3500
+    num_lines_to_select = 120
     selected_lines = random.sample(lines, min(num_lines_to_select, len(lines)))
     CAPACITIES = 50  # adjust as per your needs
     num_samples = len(selected_lines)
@@ -70,13 +71,13 @@ def generate_industry_services_data(file_directory):
     min_lat, max_lat, min_lon, max_lon = find_min_max_lat_lon_services(file_directory)
     depot_lat, depot_lon = normalize_lat_lon(1.3049384852, 103.83221985, min_lat, max_lat, min_lon, max_lon)
 
-    with open('test_instances/Industry_data_test/parcelv2.tsp', 'w') as tsp_file:
+    with open('test_instances/Industry_data_test/parcelv2a.tsp', 'w') as tsp_file:
         tsp_file.write("NAME : parcel\n")
-        tsp_file.write("COMMENT : 3300-CVRPTW problem \n")
+        tsp_file.write("COMMENT : 3300-CVRP problem \n")
         tsp_file.write("TYPE : CVRPTW\n")
         tsp_file.write("SERVICE_TIME: 120\n")
-        tsp_file.write("CAPACITY: 100\n")
-        tsp_file.write("VEHICLES: 34\n")
+        tsp_file.write("CAPACITY: 50\n")
+        tsp_file.write("VEHICLES: 7\n")
         tsp_file.write(f"DIMENSION : {len(selected_lines)}\n")
         tsp_file.write("EDGE_WEIGHT_TYPE : EUC_2D\n")
         tsp_file.write("NODE_COORD_SECTION\n")
@@ -119,15 +120,15 @@ def generate_industry_services_data(file_directory):
         tsp_file.write(f"{-1} \n")
         # print(depot_lat, depot_lon)
         tsp_file.write("DEMAND_SECTION\n")
-        tsp_file.write(f"{1} {33000}\n")
+        tsp_file.write(f"{1} {3300}\n")
         for index, line in enumerate(selected_lines):
             # node_demand = torch.tensor([demand_value]) / CAPACITIES
             tsp_file.write(f"{index + 2} {1}\n")
-        tsp_file.write("TIME_WINDOW_SECTION\n")
+        '''tsp_file.write("TIME_WINDOW_SECTION\n")
         tsp_file.write(f"{1} {0} {100000}\n")
         for index, line in enumerate(selected_lines):
             # node_demand = torch.tensor([demand_value]) / CAPACITIES
-            tsp_file.write(f"{index + 2} {28800} {82800}\n")
+            tsp_file.write(f"{index + 2} {28800} {82800}\n")'''
 
     # Preprocess the file to remove null bytes
 
@@ -141,5 +142,5 @@ with open('test_instances/Industry_data_test/parcelnonull.txt', 'r') as txtfile:
     for row in reader:
         data.append(row)
 
-generate_industry_services_data('test_instances/Industry_data_test/parcelv2.txt')
+generate_industry_services_data('test_instances/Industry_data_test/parcelv2a.txt')
 
