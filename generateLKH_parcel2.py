@@ -70,14 +70,16 @@ def generate_industry_services_data(file_directory):
 
     min_lat, max_lat, min_lon, max_lon = find_min_max_lat_lon_services(file_directory)
     depot_lat, depot_lon = normalize_lat_lon(1.3049384852, 103.83221985, min_lat, max_lat, min_lon, max_lon)
+    print('depot_lat#####',depot_lat)
+    print('depot_lon',depot_lon)
 
-    with open('test_instances/Industry_data_test/parcelv2a.tsp', 'w') as tsp_file:
+    with open('test_instances/Industry_data_test/parcelv2b.tsp', 'w') as tsp_file:
         tsp_file.write("NAME : parcel\n")
-        tsp_file.write("COMMENT : 3300-CVRP problem \n")
+        tsp_file.write("COMMENT : 80-CVRP problem \n")
         tsp_file.write("TYPE : CVRPTW\n")
         tsp_file.write("SERVICE_TIME: 120\n")
         tsp_file.write("CAPACITY: 50\n")
-        tsp_file.write("VEHICLES: 7\n")
+        tsp_file.write("VEHICLES: 5\n")
         tsp_file.write(f"DIMENSION : {len(selected_lines)}\n")
         tsp_file.write("EDGE_WEIGHT_TYPE : EUC_2D\n")
         tsp_file.write("NODE_COORD_SECTION\n")
